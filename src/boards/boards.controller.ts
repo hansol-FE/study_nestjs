@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
+import { Board } from './board.model';
 import { BoardsService } from './boards.service';
-import { Board } from '../../dist/boards/boards.model.d';
 
 @Controller('boards')
 export class BoardsController {
