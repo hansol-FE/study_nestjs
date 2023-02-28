@@ -1,3 +1,5 @@
+import { IsNotEmpty } from 'class-validator';
+
 /* 
     DTO 파일 작성:
     클래스와 인터페이스로 만들 수 있지만 클래스로 만드는걸 권장.
@@ -5,6 +7,9 @@
     
 */
 export class CreateBoardDto {
+  @IsNotEmpty()
   title: string;
+
+  @IsNotEmpty()
   description: string;
 }

@@ -6,6 +6,8 @@ import {
   Param,
   Patch,
   Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { Board, BoardStatus } from './board.model';
 import { BoardsService } from './boards.service';
@@ -30,7 +32,22 @@ export class BoardsController {
     return this.boardsService.getAllBoards();
   }
 
+  /* 
+    [Handler-level Pipes]
+    핸들러 레벨에서 @UsePipes() 데코레이터를 이용해서 사용 할 수 있다.
+    이 파이프는 모든 파라미터에 적용된다.
+
+    [Built-in Pipes]
+    Nest JS에 기본적으로 사용할 수 있게 만들어 놓은 6가지 파이프가 있다.
+    1. ValidationPipe
+    2. ParseIntPipe
+    3. ParseBoolPipe
+    4. ParseArrayPipe
+    5. ParseUUIDPipe
+    6. DefaultValuePipe
+  */
   @Post()
+  @UsePipes(ValidationPipe)
   createBoard(@Body() CreateBoardDto: CreateBoardDto): Board {
     return this.boardsService.createBoard(CreateBoardDto);
   }
